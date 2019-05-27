@@ -469,7 +469,7 @@ class Guess(Host):
 
 		self.ok = ok
 		self.no = no
-		#print(self.ok, self.no)
+		print(self.ok, self.no)
 
 	def make_int(self, b):
 		"""
@@ -496,6 +496,7 @@ class Guess(Host):
 		"""
 		Devuelve el número obtenido y da un mensaje de finalización.
 		"""
+		print(self.hit)
 		return print("FELICITACIONES SU NÚMERO ES %d\n(En caso de no ser correcto verifique las respuestas por favor)" % self.make_int(self.hit))
 
 	def find_number(self):
@@ -509,7 +510,7 @@ class Guess(Host):
 		Si el usuario proporciona datos incorrectos imprime error.
 		"""
 
-		self.hit = [[],[],[],[]]
+		self.hit = ["","","",""]
 		self.dismiss = [[],[],[],[]]
 		suggest = [self.ok[0],self.no[1],self.no[0],self.ok[3]]
 		suggest2 = [self.no[2],self.no[3],self.no[1],self.ok[3]]
@@ -535,75 +536,75 @@ class Guess(Host):
 			q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest2)))
 			# si 1: posición[3] == cifra[3].
 			if q == 1:
-				self.hit[3].append(self.ok[3])
+				self.hit[3] = self.ok[3]
 				self.dismiss[0].append([self.ok[0]])
 				# verifico si cifra[0] in posición[1] or cifra[0] in posición[2].
 				q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest13)))
 				
 				# si 1: posición[1] == cifra[0].
 				if q == 1:
-					self.hit[1].append(self.ok[0])
+					self.hit[1] = self.ok[0]
 					self.dismiss[2].append([self.ok[0]])
 					# definidas posiciones [3] y [1] verifico [0] y [2].
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest10)))
 					if q == 1:
-						self.hit[2].append(self.ok[2])
-						self.hit[0].append(self.ok[1])
+						self.hit[2] = self.ok[2]
+						self.hit[0] = self.ok[1]
 						self.end_game()
 					elif q == 0:
-						self.hit[0].append(self.ok[2])
-						self.hit[2].append(self.ok[1])
+						self.hit[0] = self.ok[2]
+						self.hit[2] = self.ok[1]
 						self.end_game()
 						
 				# si 0: posición[2] == cifra[3].
 				elif q == 0:
-					self.hit[2].append(self.ok[0])
+					self.hit[2] = self.ok[0]
 					self.dismiss[1].append(self.ok[0])
 					# definidas posiciónes [0] y [2] verifico [1] y [3].
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest11)))
 					if q == 1:
-						self.hit[1].append(self.ok[2])
-						self.hit[0].append(self.ok[1])
+						self.hit[1] = self.ok[2]
+						self.hit[0] = self.ok[1]
 						self.end_game()
 					elif q == 0:
-						self.hit[0].append(self.ok[2])
-						self.hit[1].append(self.ok[1])
+						self.hit[0] = self.ok[2]
+						self.hit[1] = self.ok[1]
 						self.end_game()
 			# si 0: posición[0] == cifra[0].
 			elif q == 0:
-				self.hit[0].append(self.ok[0])
+				self.hit[0] = self.ok[0]
 				self.dismiss[3].append([self.ok[3]])
 				# verifico si cifra[3] in posición[1] or cifra[3] in posición[2].
 				q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest9)))
 				
 				# si 1: posición[1] == cifra[3].
 				if q == 1:
-					self.hit[1].append(self.ok[3])
+					self.hit[1] = self.ok[3]
 					self.dismiss[2].append([self.ok[3]])
 					# definidas posiciones [0] y [1] verifico [2] y [3].
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest10)))
 					if q == 1:
-						self.hit[2].append(self.ok[2])
-						self.hit[3].append(self.ok[1])
+						self.hit[2] = self.ok[2]
+						self.hit[3] = self.ok[1]
 						self.end_game()
 					elif q == 0:
-						self.hit[3].append(self.ok[2])
-						self.hit[2].append(self.ok[1])
+						self.hit[3] = self.ok[2]
+						self.hit[2] = self.ok[1]
 						self.end_game()
 						
 				# si 0: posición[2] == cifra[3].
 				elif q == 0:
-					self.hit[2].append(self.ok[3])
+					self.hit[2] = self.ok[3]
 					self.dismiss[1].append([self.ok[3]])
 					# definidas posiciónes [0] y [2] verifico [1] y [3].
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest11)))
 					if q == 1:
-						self.hit[1].append(self.ok[2])
-						self.hit[3].append(self.ok[1])
+						self.hit[1] = self.ok[2]
+						self.hit[3] = self.ok[1]
 						self.end_game()
 					elif q == 0:
-						self.hit[3].append(self.ok[2])
-						self.hit[1].append(self.ok[1])
+						self.hit[3] = self.ok[2]
+						self.hit[1] = self.ok[1]
 						self.end_game()
 
 		# si 0: verifico números de los extremos [3]xx[0].
@@ -613,7 +614,7 @@ class Guess(Host):
 				#verifico última cifra
 				q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest6)))
 				if q == 1:
-					self.hit[3].append(self.ok[0])
+					self.hit[3] = self.ok[0]
 					self.dismiss[0].append([self.ok[3]])
 
 					# verifico si cifra[3] in posición[1] or cifra[3] in posición[2].
@@ -621,67 +622,67 @@ class Guess(Host):
 					
 					# si 1: posición[1] == cifra[3].
 					if q == 1:
-						self.hit[1].append(self.ok[3])
+						self.hit[1] = self.ok[3]
 						self.dismiss[2].append([self.ok[3]])
 						# definidas posiciones [0] y [1] verifico [2] y [3].
 						q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest10)))
 						if q == 1:
-							self.hit[2].append(self.ok[2])
-							self.hit[0].append(self.ok[1])
+							self.hit[2] = self.ok[2]
+							self.hit[0] = self.ok[1]
 							self.end_game()
 						elif q == 0:
-							self.hit[0].append(self.ok[2])
-							self.hit[2].append(self.ok[1])
+							self.hit[0] = self.ok[2]
+							self.hit[2] = self.ok[1]
 							self.end_game()
 							
 					# si 0: posición[2] == cifra[3].
 					elif q == 0:
-						self.hit[2].append(self.ok[3])
+						self.hit[2] = self.ok[3]
 						self.dismiss[1].append([self.ok[3]])
 						# definidas posiciónes [3] y [2] verifico [0] y [1].
 						q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest11)))
 						if q == 1:
-							self.hit[1].append(self.ok[2])
-							self.hit[0].append(self.ok[1])
+							self.hit[1] = self.ok[2]
+							self.hit[0] = self.ok[1]
 							self.end_game()
 						elif q == 0:
-							self.hit[0].append(self.ok[2])
-							self.hit[1].append(self.ok[1])
+							self.hit[0] = self.ok[2]
+							self.hit[1] = self.ok[1]
 							self.end_game()
 				elif q == 0:
-					self.hit[0].append(self.ok[3])
+					self.hit[0] = self.ok[3]
 					self.dismiss[3].append([self.ok[0]])
 
 					# verifico si cifra[0] in posición[1] or cifra[0] in posición[2].
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest12)))
 					# si 1: posición[1] == cifra[0].
 					if q == 1:
-						self.hit[1].append(self.ok[0])
+						self.hit[1] = self.ok[0]
 						self.dismiss[2].append([self.ok[0]])
 						# definidas posiciones [0] y [1] verifico [2] y [3].
 						q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest10)))
 						if q == 1:
-							self.hit[2].append(self.ok[2])
-							self.hit[3].append(self.ok[1])
+							self.hit[2] = self.ok[2]
+							self.hit[3] = self.ok[1]
 							self.end_game()
 						elif q == 0:
-							self.hit[3].append(self.ok[2])
-							self.hit[2].append(self.ok[1])
+							self.hit[3] = self.ok[2]
+							self.hit[2] = self.ok[1]
 							self.end_game()
 							
 					# si 0: posición[2] == cifra[0].
 					elif q == 0:
-						self.hit[2].append(self.ok[0])
+						self.hit[2] = self.ok[0]
 						self.dismiss[1].append([self.ok[3]])
 						# definidas posiciónes [0] y [2] verifico [1] y [3].
 						q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest11)))
 						if q == 1:
-							self.hit[1].append(self.ok[2])
-							self.hit[3].append(self.ok[1])
+							self.hit[1] = self.ok[2]
+							self.hit[3] = self.ok[1]
 							self.end_game()
 						elif q == 0:
-							self.hit[3].append(self.ok[2])
-							self.hit[1].append(self.ok[1])
+							self.hit[3] = self.ok[2]
+							self.hit[1] = self.ok[1]
 							self.end_game()
 			# si 2: posición[0] y [3] ok. verifico posiciones centrales.
 			elif q2 == 2:
@@ -720,41 +721,46 @@ class Guess(Host):
 
 				# si 1: posición[2] == cifra[3] and posición[1] == cifra[0]
 				if q == 1:
-					self.hit[2].append(self.ok[3])
+					self.hit[2] = self.ok[3]
 					self.dismiss[1].append([self.ok[3]])
-					self.hit[1].append(self.ok[0])
+					self.hit[1] = self.ok[0]
 					self.dismiss[2].append([self.ok[0]])
 
 					#definidas posiciones [1] y [2] verifico [0] y [3]
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest15)))
 					if q == 1:
-						self.hit[0].append(self.ok[1])
-						self.hit[3].append(self.ok[2])
+						self.hit[0] = self.ok[1]
+						self.hit[3] = self.ok[2]
 						self.end_game()
 					elif q == 0:
-						self.hit[3].append(self.ok[1])
-						self.hit[0].append(self.ok[2])
+						self.hit[3] = self.ok[1]
+						self.hit[0] = self.ok[2]
 						self.end_game()
 
 				# si 0: posición[2] == cifra[0] and posición[1] == cifra[3]
 				elif q == 0:
-					self.hit[2].append(self.ok[0])
+					self.hit[2] = self.ok[0]
 					self.dismiss[2].append([self.ok[3]])
-					self.hit[1].append(self.ok[3])
+					self.hit[1] = self.ok[3]
 					self.dismiss[1].append([self.ok[0]])
 
 					#definidas posiciones [1] y [2] verifico [0] y [3]
 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest15)))
 					if q == 1:
-						self.hit[0].append(self.ok[1])
-						self.hit[3].append(self.ok[2])
+						self.hit[0] = self.ok[1]
+						self.hit[3] = self.ok[2]
 						self.end_game()
 					elif q == 0:
-						self.hit[3].append(self.ok[1])
-						self.hit[0].append(self.ok[2])
+						self.hit[3] = self.ok[1]
+						self.hit[0] = self.ok[2]
 						self.end_game()
 
-		print("Error: Ha ingresado un valor equivocado.")
+		print(self.hit)
+		for i in self.hit:
+			if i != type(int):
+				print("Error: Ha ingresado un valor equivocado.")
+				break
+	
 
 def main():
     comenzar = Guess()
@@ -766,3 +772,85 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
+
+#____________________________
+# container:
+
+# if q1 == 1:
+# 			#verifico última cifra.
+# 			q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest2)))
+# 			# si 1: posición[3] == cifra[3].
+# 			if q == 1:
+# 				self.hit[3].append(self.ok[3])
+# 				self.dismiss[0].append([self.ok[0]])
+# 				# verifico si cifra[0] in posición[1] or cifra[0] in posición[2].
+# 				q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest13)))
+				
+# 				# si 1: posición[1] == cifra[0].
+# 				if q == 1:
+# 					self.hit[1].append(self.ok[0])
+# 					self.dismiss[2].append([self.ok[0]])
+# 					# definidas posiciones [3] y [1] verifico [0] y [2].
+# 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest10)))
+# 					if q == 1:
+# 						self.hit[2].append(self.ok[2])
+# 						self.hit[0].append(self.ok[1])
+# 						self.end_game()
+# 					elif q == 0:
+# 						self.hit[0].append(self.ok[2])
+# 						self.hit[2].append(self.ok[1])
+# 						self.end_game()
+						
+# 				# si 0: posición[2] == cifra[3].
+# 				elif q == 0:
+# 					self.hit[2].append(self.ok[0])
+# 					self.dismiss[1].append(self.ok[0])
+# 					# definidas posiciónes [0] y [2] verifico [1] y [3].
+# 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest11)))
+# 					if q == 1:
+# 						self.hit[1].append(self.ok[2])
+# 						self.hit[0].append(self.ok[1])
+# 						self.end_game()
+# 					elif q == 0:
+# 						self.hit[0].append(self.ok[2])
+# 						self.hit[1].append(self.ok[1])
+# 						self.end_game()
+# 			# si 0: posición[0] == cifra[0].
+# 			elif q == 0:
+# 				self.hit[0].append(self.ok[0])
+# 				self.dismiss[3].append([self.ok[3]])
+# 				# verifico si cifra[3] in posición[1] or cifra[3] in posición[2].
+# 				q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest9)))
+				
+# 				# si 1: posición[1] == cifra[3].
+# 				if q == 1:
+# 					self.hit[1].append(self.ok[3])
+# 					self.dismiss[2].append([self.ok[3]])
+# 					# definidas posiciones [0] y [1] verifico [2] y [3].
+# 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest10)))
+# 					if q == 1:
+# 						self.hit[2].append(self.ok[2])
+# 						self.hit[3].append(self.ok[1])
+# 						self.end_game()
+# 					elif q == 0:
+# 						self.hit[3].append(self.ok[2])
+# 						self.hit[2].append(self.ok[1])
+# 						self.end_game()
+						
+# 				# si 0: posición[2] == cifra[3].
+# 				elif q == 0:
+# 					self.hit[2].append(self.ok[3])
+# 					self.dismiss[1].append([self.ok[3]])
+# 					# definidas posiciónes [0] y [2] verifico [1] y [3].
+# 					q = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest11)))
+# 					if q == 1:
+# 						self.hit[1].append(self.ok[2])
+# 						self.hit[3].append(self.ok[1])
+# 						self.end_game()
+# 					elif q == 0:
+# 						self.hit[3].append(self.ok[2])
+# 						self.hit[1].append(self.ok[1])
+# 						self.end_game()
+
+
