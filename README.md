@@ -1,4 +1,4 @@
-# Evenbrite Homework EDA 3.0 - Guessing numbers
+# Eventbrite Homework EDA 3.0 - Guessing numbers
 
 There a two games about guessing a 4 digit number: 
 - In first game the computer will be selecting a number and you must guess it with the hints that the computer will be giving you.
