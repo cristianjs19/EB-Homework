@@ -26,7 +26,7 @@ class Host(User):
 		msg = "Bienvenid@ %s, en el siguiente juego usted debe adivinar cual es el número de 4 cifras que ha pensado el ordenador(ninguna se repite). Se le indicará si hay cifras OK y si hay cifras REGULAR (en una posición incorrecta)." % self.name.upper()
 		print(msg)
 
-	def num(self):
+	def host_num(self):
 		"""
 		Genera un número aleatorio de 4 cifras no repetidas que el usuario deberá adivinar.
 		"""
@@ -82,7 +82,7 @@ class Guess(Host):
 def main():
     comenzar = Guess()
     comenzar.wellcome()
-    comenzar.num()
+    comenzar.host_num()
     comenzar.userNum()
     comenzar.guess()
     comenzar.win()

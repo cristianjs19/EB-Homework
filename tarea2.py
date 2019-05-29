@@ -265,6 +265,68 @@ class Guess(Host):
 				elif q5 == 1:
 					no.append(8)
 					ok.extend([9,0])
+		## q == 3 and q2 == 0.
+		elif q == 3 and q2 == 0:
+			no.extend([7,8,9,0])
+			#defino 5 y 6.
+			q3 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos3[0])) + int(input("Cifras REGULAR: "))
+			if q3 == 1:
+				ok.append(5)
+				no.append(6)
+			else:
+				ok.append(6)
+				no.append(5)
+			#defino grupo con 3 positivos
+			q4 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos5[0])) + int(input("Cifras REGULAR: "))
+			if q4 == 3:
+				no.append(4)
+				ok.extend([1,2,3])
+			elif q4 == 2:
+				ok.append(4)
+				q5 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos5[1])) + int(input("Cifras REGULAR: "))
+				if q5 == 2:
+					ok.append(3)
+					q6 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos5[2])) + int(input("Cifras REGULAR: "))
+					if q6 == 2:
+						ok.append(2)
+						no.append(1)
+					elif q6 == 1:
+						ok.append(1)
+						no.append(2)
+				elif q5 == 1:
+					no.append(3)
+					ok.extend([1,2])
+		## q == 3 and q2 == 0.
+		elif q == 0 and q2 == 3:
+			no.extend([1,2,3,4])		
+			#defino 5 y 6.
+			q3 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos4[0])) + int(input("Cifras REGULAR: "))
+			if q3 == 1:
+				ok.append(5)
+				no.append(6)
+			else:
+				ok.append(6)
+				no.append(5)
+			#defino grupo con 3 positivos
+			q3 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos51[0])) + int(input("Cifras REGULAR: "))
+			if q3 == 3:
+				no.append(7)
+				ok.extend([8,9,0])
+			elif q3 == 2:
+				ok.append(7)
+				q5 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos5[2])) + int(input("Cifras REGULAR: "))
+				if q5 == 2:
+					ok.append(0)
+					q6 = int(input("Su número es el %d?\nCifras OK:   "% conjuntos51[1])) + int(input("Cifras REGULAR: "))
+					if q6 == 3:
+						ok.append(8)
+						no.append(9)
+					elif q6 == 2:
+						ok.append(9)
+						no.append(8)
+				elif q5 == 1:
+					no.append(0)
+					ok.extend([8,9])
 
 		## q == 2 and q2 == 0.
 		elif q == 2 and q2 == 0:
@@ -456,7 +518,7 @@ class Guess(Host):
 					elif q6 == 0:
 						ok.append(0)
 						no.append(9)
-		## q == 4 or q2 == 4
+		## q == 4 or q2 == 4.
 		elif q == 4 :
 			ok.extend([1,2,3,4])
 			no.extend([7,8,9,0])
@@ -469,7 +531,6 @@ class Guess(Host):
 
 		self.ok = ok
 		self.no = no
-		print(self.ok, self.no)
 
 	def make_int(self, b):
 		"""
@@ -496,7 +557,7 @@ class Guess(Host):
 		"""
 		Devuelve el número obtenido y da un mensaje de finalización.
 		"""
-		print(self.hit)
+		#print(self.hit)
 		return print("FELICITACIONES SU NÚMERO ES %d\n(En caso de no ser correcto verifique las respuestas por favor)" % self.make_int(self.hit))
 
 	def find_number(self):
@@ -755,9 +816,9 @@ class Guess(Host):
 						self.hit[0] = self.ok[2]
 						self.end_game()
 
-		print(self.hit)
+		#print(self.hit)
 		for i in self.hit:
-			if i != type(int):
+			if isinstance(i,int) == False:
 				print("Error: Ha ingresado un valor equivocado.")
 				break
 	
